@@ -1,0 +1,26 @@
+{
+  "name": "EpsiCalendar",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "node-html-parser": "^1.1.13",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
+    "react-native-calendars": "^1.27.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-jest": "24.6.0",
+    "babel-preset-react-native": "^5",
+    "jest": "24.6.0",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
