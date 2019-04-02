@@ -70,7 +70,7 @@ export default class AgendaScreen extends Component {
 
     loadItems({dateString}) {
 
-        let username = "matteo.peronnet"
+        let username = this.props.username;
         for(let i = 0; i < 7; i++) {
             let formatedDateApi = moment(dateString, 'YYYY-MM-DD').add(i, 'days').format('MM-DD-YYYY');
             let originalDate = moment(formatedDateApi, 'MM-DD-YYYY').format('YYYY-MM-DD');
