@@ -23,7 +23,7 @@ cd android && ./gradlew assembleRelease && cd ..
 
 jarsigner -verbose -keystore ./epsi-calendar.keystore android/app/build/outputs/apk/app-release-unsigned.apk epsi-calendar
 
-zipalign -f -v 4 android/app/build/outputs/apk/app-release-unsigned.apk appName.apk
+zipalign -f -v 4 android/app/build/outputs/apk/app-release-unsigned.apk epsi-calendar.apk
 ```
 
 ## BUILD IOS
