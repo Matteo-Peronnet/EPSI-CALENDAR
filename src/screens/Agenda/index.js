@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react';
 import {
     Text,
     View,
-    StyleSheet
+    StyleSheet, ActivityIndicator, TouchableOpacity
 } from 'react-native';
+import PropTypes from 'prop-types';
 import {Agenda, LocaleConfig} from 'react-native-calendars';
-import moment from 'moment'
+import moment from 'moment';
+import { agendaApiRequest } from "../../services/api";
 import { parse } from 'node-html-parser';
 import uuid from 'uuid/v1'
 import 'moment/locale/fr'  // without this line it didn't work
@@ -21,6 +23,12 @@ LocaleConfig.locales['fr'] = {
 LocaleConfig.defaultLocale = 'fr';
 
 export default class AgendaScreen extends Component {
+
+    static propTypes = {
+        username: PropTypes.string.isRequired,
+        onDisconnect: PropTypes.func.isRequired
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -32,18 +40,31 @@ export default class AgendaScreen extends Component {
     }
 
     render() {
+
+        const { onDisconnect } = this.props;
+
         return (
-            <Agenda
-                items={this.state.items}
-                loadItemsForMonth={this.loadItems.bind(this)}
-                onDayChange={this.loadItems.bind(this)}
-                selected={moment().format('YYYY-MM-DD')}
-                renderItem={this.renderItem.bind(this)}
-                renderEmptyDate={this.renderEmptyDate.bind(this)}
-                rowHasChanged={this.rowHasChanged.bind(this)}
-                renderDay={this.renderDays.bind(this)}
-                firstDay={1}
-            />
+            <Fragment>
+                <View style={{width:'100%', alignItems: 'flex-end'}}>
+                    <TouchableOpacity onPress={() => onDisconnect()}>
+                        {
+                            <Text style={{fontWeight: 'bold'}}>Déconnexion</Text>
+                        }
+                    </TouchableOpacity>
+                </View>
+                <Agenda
+                    items={this.state.items}
+                    loadItemsForMonth={this.loadItems.bind(this)}
+                    onDayChange={this.loadItems.bind(this)}
+                    selected={moment().format('YYYY-MM-DD')}
+                    renderItem={this.renderItem.bind(this)}
+                    renderEmptyDate={this.renderEmptyDate.bind(this)}
+                    rowHasChanged={this.rowHasChanged.bind(this)}
+                    renderDay={this.renderDays.bind(this)}
+                    firstDay={1}
+                    style={{flex: 1, width: '100%', height: '100%'}}
+                />
+            </Fragment>
         );
     }
 
@@ -54,12 +75,7 @@ export default class AgendaScreen extends Component {
             let formatedDateApi = moment(dateString, 'YYYY-MM-DD').add(i, 'days').format('MM-DD-YYYY');
             let originalDate = moment(formatedDateApi, 'MM-DD-YYYY').format('YYYY-MM-DD');
             if(this.state.items[originalDate]) { continue }
-            fetch(`http://edtmobilite.wigorservices.net:80/WebPsDyn.aspx?Action=posETUD&serverid=h&tel=${username}&date=${formatedDateApi}%208:00`,{
-                method: 'GET',
-                headers: {
-                    'Accept': 'text/html; charset=utf-8',
-                },
-            }).then((res) => {
+            agendaApiRequest(username, formatedDateApi).then((res) => {
                 let courses = [];
                 console.log(res)
                 parse(res._bodyText).querySelectorAll('.Ligne').map((element) => {
