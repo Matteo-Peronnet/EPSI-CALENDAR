@@ -45,7 +45,7 @@ export default class AgendaScreen extends Component {
 
         return (
             <Fragment>
-                <View style={{width:'100%', alignItems: 'flex-end'}}>
+                <View style={{width:'100%', alignItems: 'flex-end', paddingVertical: 5}}>
                     <TouchableOpacity onPress={() => onDisconnect()}>
                         {
                             <Text style={{fontWeight: 'bold'}}>Déconnexion</Text>
@@ -77,7 +77,7 @@ export default class AgendaScreen extends Component {
             if(this.state.items[originalDate]) { continue }
             agendaApiRequest(username, formatedDateApi).then((res) => {
                 let courses = [];
-                console.log(res)
+
                 parse(res._bodyText).querySelectorAll('.Ligne').map((element) => {
                     let course = {};
                     element.childNodes.map((node, index) => {

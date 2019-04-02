@@ -29,7 +29,6 @@ export default class App extends Component<Props> {
   }
 
   loginSuccessfullHandler(username) {
-      console.log(username)
       storeData('username', username).then(() => {
           this.setState({
               ...this.state,
@@ -40,7 +39,6 @@ export default class App extends Component<Props> {
   }
 
   dysconnectHandler() {
-      console.log('disconnect')
       removeData('username').then(() =>
       this.setState({
           ...this.state,
