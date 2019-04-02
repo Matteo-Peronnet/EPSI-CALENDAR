@@ -4,8 +4,10 @@
 This application replace the current EPSI schedule.
 
 ## DEMO
-![](./doc/demo.gif)
 
+<p align="center">
+	<img src="https://raw.githubusercontent.com/Matteo-Peronnet/EPSI-CALENDAR/master/doc/demo.gif" title="EPSI CALENDAR" alt="EPSI CALENDAR"/>
+</p>
 
 ## INSTALLATION
 
@@ -45,3 +47,4 @@ by
 ```
   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 ```
+
