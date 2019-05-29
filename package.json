@@ -11,7 +11,7 @@
     "node-html-parser": "^1.1.13",
     "prop-types": "^15.7.2",
     "react": "16.4.1",
-    "react-native": "0.56.0",
+    "react-native": "0.56.1",
     "react-native-calendars": "^1.27.0",
     "uuid": "^3.3.2"
   },
