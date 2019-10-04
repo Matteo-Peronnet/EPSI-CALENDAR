@@ -19,7 +19,7 @@
     "babel-jest": "24.6.0",
     "babel-preset-react-native": "^5",
     "jest": "24.6.0",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.10.2"
   },
   "jest": {
     "preset": "react-native"
