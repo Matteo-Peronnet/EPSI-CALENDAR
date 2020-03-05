@@ -13,7 +13,7 @@
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-native-calendars": "^1.27.0",
-    "uuid": "^3.3.2"
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "babel-jest": "24.6.0",
